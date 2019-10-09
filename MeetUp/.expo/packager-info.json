@@ -1,9 +1,9 @@
 {
-  "devToolsPort": 19002,
+  "devToolsPort": 19003,
   "expoServerPort": 19000,
   "packagerPort": 19001,
-  "packagerPid": 3496,
+  "packagerPid": 16792,
   "expoServerNgrokUrl": "https://6w-jn7.anonymous.meetup.exp.direct",
   "packagerNgrokUrl": "https://packager.6w-jn7.anonymous.meetup.exp.direct",
-  "ngrokPid": 3252
+  "ngrokPid": 4444
 }

@@ -1,41 +1,33 @@
 import React, {Component} from 'react';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
-import {Button} from 'react-native';
+import {Button,Text} from 'react-native';
 
-class MyHomeScreen extends Component {
+class Greeting extends Component {    //each dashboard component gets its own navigation options config
     static navigationOptions = {
-      drawerLabel: 'Home',
+      title: 'Dashboard Element',
     };
+
   
     render() {
       return (
-        <Button
-          onPress={() => this.props.navigation.navigate('Notifications')}
-          title="Go to notifications"
-        />
+        <Text
+          title="WELCOME"
+        >
+        </Text>
       );
     }
 }
 
-const DashboardNavigator =  createDrawerNavigator({ //route Configs, Drawer Navigator Configs
-    Home: MyHomeScreen
-});
+const SideMenu =  createDrawerNavigator({ //first object is the route configs
+    Greeting,
 
-class Dashboard extends Component{
-    constructor(props)
-    {
-        super(props);
-    }
+  },{ //second object is the drawer navigator configs
+    drawerBackgroundColor: 'gray',
+    drawerType: 'slide',
+    drawerWidth: 200
+  }
+);
 
-    render(){
-
-        const DashboardContainer = createAppContainer(DashboardNavigator);
-        return ( 
-            <DashboardContainer/>
-        );
-
-    }
-}
-
-export default Dashboard;
+//exporting the entire side menu dashboard as a component
+export default createAppContainer(SideMenu);
