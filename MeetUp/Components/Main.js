@@ -11,6 +11,13 @@ class Main extends Component{
         return(
             <View>
                 <Text> Dashboard Here, With a nested side menu </Text>
+                <Button
+                    title = "Create New Group"
+                    onPress = {() => {
+                        this.props.navigation.navigate('Form'); 
+                    }}
+                
+                />
             </View>
         );
     }
