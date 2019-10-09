@@ -116,4 +116,4 @@ const SideMenu =  createDrawerNavigator({ //first object is the route configs
 );
 
 //exporting the entire side menu dashboard as a component 
-export default createAppContainer(SideMenu);;
+export default createAppContainer(SideMenu);
