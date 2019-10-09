@@ -17,10 +17,7 @@ const AppNavigator = createStackNavigator(
   {
     initialRouteName: 'Dashboard',
     defaultNavigationOptions:{
-      headerStyle: {
-        backgroundColor: 'transparent',
-        zIndex: 100,
-      },
+      headerTransparent: true
     }
   },
 );
