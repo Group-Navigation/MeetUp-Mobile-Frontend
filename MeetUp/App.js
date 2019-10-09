@@ -4,16 +4,19 @@ import { createStackNavigator } from 'react-navigation-stack';
 import {View, Text, Button} from 'react-native';
 import Login from './Components/Login';
 import Main from './Components/Main';
+//import Example from './Components/example';
+import Dashboard from './Components/Dashboard';
 
 
 
 const AppNavigator = createStackNavigator(
   {
     Login:  Login,
-    Main: Main
+    Main: Main,
+    Dashboard: Dashboard
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Dashboard',
     defaultNavigationOptions:{
       headerStyle: {
         backgroundColor: '#f4511e',
