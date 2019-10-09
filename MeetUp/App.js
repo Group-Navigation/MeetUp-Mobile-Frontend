@@ -12,18 +12,14 @@ import Dashboard from './Components/Dashboard';
 const AppNavigator = createStackNavigator(
   {
     Login:  Login,
-    Main: Main,
-    Dashboard: Dashboard
+    Dashboard: Dashboard    //dashboard contains the map as a component
   },
   {
     initialRouteName: 'Dashboard',
     defaultNavigationOptions:{
       headerStyle: {
-        backgroundColor: '#f4511e',
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
+        backgroundColor: 'transparent',
+        zIndex: 100,
       },
     }
   },

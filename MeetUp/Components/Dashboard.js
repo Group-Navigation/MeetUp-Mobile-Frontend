@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import {createDrawerNavigator} from 'react-navigation-drawer';
 import { createAppContainer } from 'react-navigation';
-import {Button,Text} from 'react-native';
+import {Button,Text, View} from 'react-native';
+import Main from './Main';
 
 class Greeting extends Component {    //each dashboard component gets its own navigation options config
     static navigationOptions = {
@@ -11,10 +12,7 @@ class Greeting extends Component {    //each dashboard component gets its own na
   
     render() {
       return (
-        <Text
-          title="WELCOME"
-        >
-        </Text>
+        <Main></Main> ///This is where the map component will go
       );
     }
 }
@@ -25,9 +23,9 @@ const SideMenu =  createDrawerNavigator({ //first object is the route configs
   },{ //second object is the drawer navigator configs
     drawerBackgroundColor: 'gray',
     drawerType: 'slide',
-    drawerWidth: 200
+    drawerWidth: 250
   }
 );
 
-//exporting the entire side menu dashboard as a component
-export default createAppContainer(SideMenu);
+//exporting the entire side menu dashboard as a component 
+export default createAppContainer(SideMenu);;
