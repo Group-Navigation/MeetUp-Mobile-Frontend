@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, Image} from 'react-native';
+import UserCard from "./UserCard"
 import t from 'tcomb-form-native';
 
 const GroupForm = t.form.Form;
@@ -62,15 +63,18 @@ class Form extends Component{
             !this.state.userSelectionComplete ?
             <View>
                 <Text>Select users here. Once done, click the "Next" button to complete creating the group</Text>
-                <Text>User1</Text>
-                <Text>User2</Text>
-                <Text>User3</Text>
-                <Text>User4</Text>
-                <Text>User5</Text>
                 <Button 
                     title="Next"
                     onPress={this.finishUserSelection}
                 />
+                <View 
+                style = {{display: "flex", flexDirection: "row", justifyContent: "space-around", alignContent: "center", flexWrap: "wrap"}}>
+                    {this.props.navigation.state.params.contacts.map((contact) => {
+                            return(
+                                <UserCard contact={contact}/>
+                            )
+                    })}
+                </View>
                 
             </View>
             :
