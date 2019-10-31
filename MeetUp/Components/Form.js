@@ -35,12 +35,36 @@ class Form extends Component{
         }
         this.handleSubmit = this.handleSubmit.bind(this);
         this.finishUserSelection = this.finishUserSelection.bind(this);
+        this.addUserToGroup = this.addUserToGroup.bind(this);
+        this.removeUserFromGroup = this.removeUserFromGroup.bind(this);
     }
+
+    //clicking on user's icon adds them to the group
+    addUserToGroup(user) {
+        let newSelectedUsers = [...this.state.selectedUsers, user];
+        this.setState({
+            selectedUsers: newSelectedUsers
+        });
+    }
+
+  //when the user is selected, but is clicked on again, it gets removed from the group
+    removeUserFromGroup(user) {
+        let newSelectedUsers = this.state.selectedUsers;
+        for (let i = 0; i < newSelectedUsers.length; i++) {
+            if (newSelectedUsers[i].id === user.id) {
+                newSelectedUsers.splice(i, 1);
+                break;
+            }
+        }
+        this.setState({
+            selectedUsers: newSelectedUsers
+        });
+    }
+
 
     //validates input and creates a new group
     handleSubmit(){
         let value = this._form.getValue();
-        console.log(value);
         if (value){
             this.setState({
                 name: value.name,
@@ -71,7 +95,7 @@ class Form extends Component{
                 style = {{display: "flex", flexDirection: "row", justifyContent: "space-around", alignContent: "center", flexWrap: "wrap"}}>
                     {this.props.navigation.state.params.contacts.map((contact) => {
                             return(
-                                <UserCard contact={contact}/>
+                                <UserCard contact={contact} addUserToGroup={this.addUserToGroup} removeUserFromGroup={this.removeUserFromGroup}/>
                             )
                     })}
                 </View>
