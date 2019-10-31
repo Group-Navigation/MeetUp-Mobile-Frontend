@@ -15,6 +15,12 @@ class UserCard extends Component{
 
     //validates input and creates a new group
     toggleSelected(){
+        if(!this.state.userSelected){
+            this.props.addUserToGroup(this.props.contact);
+        }
+        else{
+            this.props.removeUserFromGroup(this.props.contact);
+        }
         this.setState({
             userSelected: !this.state.userSelected
         })
