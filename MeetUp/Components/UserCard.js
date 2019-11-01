@@ -28,24 +28,29 @@ class UserCard extends Component{
 
     render(){
         return(
-        <TouchableOpacity onPress = {this.toggleSelected}>
+        <TouchableOpacity onPress = {this.toggleSelected} style = {styles.fullContact}>
             {!this.state.userSelected ?
-            <View style = {styles.unselectedUserCard}>
+            <View>
                 <ImageBackground
-                    style = {styles.userImage}
-                    source = {{uri: this.props.contact.image}}>
+                    style = {styles.userImageUnselected}
+                    >
+                        <Image 
+                            source = {{uri: this.props.contact.image}}
+                            style = {styles.userImage} 
+                        />
                     </ImageBackground>
 
                 <Text style = {styles.textStyle}>{this.props.contact.name}</Text>
             </View>
             :
-            <View style = {styles.unselectedUserCard}>
+            <View>
                 <ImageBackground
-                    style = {styles.userImage}
-                    source = {{uri: this.props.contact.image}}>
+                    style = {styles.userImageSelected}
+                    // source = {{uri: this.props.contact.image}}
+                    >
                         <Image 
-                            source = {{uri: "https://www.pngfind.com/pngs/m/254-2546448_free-png-check-mark-png-png-image-with.png"}}
-                            style = {styles.checkmark} 
+                            source = {{uri: this.props.contact.image}}
+                            style = {styles.userImage} 
                         />
                 </ImageBackground>
 
@@ -58,22 +63,39 @@ class UserCard extends Component{
 }
 
 const styles = StyleSheet.create({
-    unselectedUserCard: {
-        
+    fullContact: {
+        marginTop: 8,
+        marginBottom: 10
     },
     userImage: {
-        width: 120, 
-        height: 120
+        width: 110, 
+        height: 110,
     },
     textStyle: {
         textAlign: "center",
         fontSize: 18
     },
-    checkmark: {
-        width: 120,
-        height: 120,
-        backgroundColor: "transparent"
+    userImageUnselected: {
+        width: 117, 
+        height: 117,
+        backgroundColor: "transparent",
+        borderRadius: 100,
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 2
+    },
+    userImageSelected: {
+        width: 117, 
+        height: 117,
+        backgroundColor: "rgb(51, 204, 51)",
+        borderRadius: 100,
+        justifyContent: "center",
+        alignItems: "center",
+        marginBottom: 2
     }
 });
 
 export default UserCard;
+
+
+//"https://www.pngfind.com/pngs/m/254-2546448_free-png-check-mark-png-png-image-with.png

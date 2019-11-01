@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {View, Text, Button, Image} from 'react-native';
+import {View, Text, Button, Image, StyleSheet} from 'react-native';
 import UserCard from "./UserCard"
 import t from 'tcomb-form-native';
 
@@ -92,7 +92,7 @@ class Form extends Component{
                     onPress={this.finishUserSelection}
                 />
                 <View 
-                style = {{display: "flex", flexDirection: "row", justifyContent: "space-around", alignContent: "center", flexWrap: "wrap"}}>
+                style = {styles.userSelection}>
                     {this.props.navigation.state.params.contacts.map((contact) => {
                             return(
                                 <UserCard contact={contact} addUserToGroup={this.addUserToGroup} removeUserFromGroup={this.removeUserFromGroup}/>
@@ -120,5 +120,15 @@ class Form extends Component{
         );
     }
 }
+
+const styles = StyleSheet.create({
+    userSelection: {
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignContent: "center",
+        flexWrap: "wrap"
+    }
+});
 
 export default Form;
