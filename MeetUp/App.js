@@ -1,9 +1,10 @@
 import React, { Component } from 'react';
 import { createAppContainer } from 'react-navigation';
 import { createStackNavigator } from 'react-navigation-stack';
-import {View, Text, Button} from 'react-native';
+import {View, Text, Button, StatusBar} from 'react-native';
 import Login from './Components/Login';
 import Main from './Components/Main';
+import Dashboard from './Components/Dashboard';
 import Form from './Components/Form';
 
 
@@ -11,19 +12,14 @@ import Form from './Components/Form';
 const AppNavigator = createStackNavigator(
   {
     Login:  Login,
+    Dashboard: Dashboard,    //dashboard contains the map as a component
     Main: Main,
     Form: Form
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Dashboard',
     defaultNavigationOptions:{
-      headerStyle: {
-        backgroundColor: '#f4511e',
-      },
-      headerTintColor: '#fff',
-      headerTitleStyle: {
-        fontWeight: 'bold',
-      },
+      headerTransparent: true
     }
   },
 );
