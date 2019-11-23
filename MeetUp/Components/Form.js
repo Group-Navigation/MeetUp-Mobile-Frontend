@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {View, Text, Button, Image, StyleSheet} from 'react-native';
+import {View, Text, Button, StyleSheet} from 'react-native';
 import UserCard from "./UserCard"
 import t from 'tcomb-form-native';
+import {connect} from 'react-redux';
+import {addGroups, addCurrentGroup} from '../Actions';
 
 const GroupForm = t.form.Form;
 
@@ -69,14 +71,13 @@ class Form extends Component{
             this.setState({
                 name: value.name,
                 address: value.address,
-                userSelectionComplete: true
-            })
+            });
+            //retrieve user paths and make a group post request here
         }
     }
 
     //called when users are selected
     finishUserSelection(){
-        //do stuff here to populate selectedUsers array
         this.setState({
             userSelectionComplete: true
         })
@@ -93,10 +94,15 @@ class Form extends Component{
                 />
                 <View 
                 style = {styles.userSelection}>
-                    {this.props.navigation.state.params.contacts.map((contact) => {
+                    {/* {this.props.navigation.state.params.contacts.map((contact) => {
                             return(
                                 <UserCard contact={contact} addUserToGroup={this.addUserToGroup} removeUserFromGroup={this.removeUserFromGroup}/>
                             )
+                    })} */}
+                    {this.props.contacts.map(contact => {
+                        return (
+                            <UserCard contact={contact} addUserToGroup={this.addUserToGroup} removeUserFromGroup={this.removeUserFromGroup}/>
+                        )
                     })}
                 </View>
                 
@@ -131,4 +137,17 @@ const styles = StyleSheet.create({
     }
 });
 
-export default Form;
+const mapStateToProps = state => {
+    return {
+        contacts: state.contacts,
+        // login: state.login
+    };
+};
+
+export default connect(
+    mapStateToProps,
+    {
+        addGroups,
+        addCurrentGroup
+    }
+)(Form);
