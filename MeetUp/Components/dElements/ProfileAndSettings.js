@@ -46,7 +46,7 @@ export default class ProfileAndSettings extends Component{
   
       return(
         <View style={style.container}>
-          <TouchableOpacity style={style.tap}>
+          <TouchableOpacity onPress = {() => {this.props.navigation.navigate('ProfilePage')}} style={style.tap}>
             <Image style={style.profile} source={require('../../Assets/Profile_Pic.png')}/>
             <Text style={style.miniText}> Profile </Text>
           </TouchableOpacity>

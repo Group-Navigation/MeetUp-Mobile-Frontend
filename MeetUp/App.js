@@ -10,6 +10,7 @@ import Login from './Components/Login';
 import Main from './Components/Main';
 import Dashboard from './Components/Dashboard';
 import Form from './Components/Form';
+import ProfilePage from './Components/ProfilePage';
 
 
 const AppNavigator = createStackNavigator(
@@ -17,7 +18,8 @@ const AppNavigator = createStackNavigator(
     Login:  Login,
     Dashboard: Dashboard,    //dashboard contains the map as a component
     Main: Main,
-    Form: Form
+    Form: Form,
+    ProfilePage: ProfilePage
   },
   {
     initialRouteName: 'Dashboard',
