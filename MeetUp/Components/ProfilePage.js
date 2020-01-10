@@ -1,5 +1,5 @@
 import React, {Component} from 'react';
-import {Text, View, StyleSheet, Image, ImageBackground, TouchableOpacity} from 'react-native';
+import {Text, View, StyleSheet, Image, ImageBackground, TouchableOpacity, FlatList} from 'react-native';
 import {connect} from 'react-redux';
 
 class ProfilePage extends Component{
@@ -30,9 +30,9 @@ class ProfilePage extends Component{
           </TouchableOpacity>
 
           <TouchableOpacity>
-            <Text style = {styles.tabsTextStyle}>{this.props.groups.length}</Text> 
+            <Text style = {styles.tabsTextStyle}>{this.props.archivedGroups.length}</Text> 
             <Text style = {styles.tabsTextStyle2}> Archived </Text>
-            <Text style = {styles.tabsTextStyle2}> Groups </Text>
+            <Text style = {styles.tabsTextStyle3}> Groups </Text>
           </TouchableOpacity>
           
         </View>
@@ -47,12 +47,41 @@ class ProfilePage extends Component{
         </View>
 
         <View style = {styles.extraButtons}>
-          <TouchableOpacity>
+          <TouchableOpacity style = {styles.individualExtraButtons}>
             <Image
-              source = {{uri: "https://cdn0.iconfinder.com/data/icons/button-outline/64/BUTTON-12-512.png"}}
+              source = {{uri: "http://cdn.onlinewebfonts.com/svg/img_517898.png"}}
               style = {styles.individualExtraButtons}
             />
+            <Text style = {styles.extraButtonsText}>Find Users</Text>
           </TouchableOpacity>
+          <TouchableOpacity onPress = {() => {this.props.navigation.navigate('Form')}} style = {styles.individualExtraButtons}>
+            <Image
+              source = {{uri: "http://cdn.onlinewebfonts.com/svg/img_339639.png"}}
+              style = {styles.individualExtraButtons}
+            />
+            <Text style = {styles.extraButtonsText}>New Group</Text>
+          </TouchableOpacity>
+        </View>
+
+        <View style = {styles.borderLine}>
+        </View>
+
+        <View style = {styles.groupList}>
+          <View style = {styles.numberOfActiveGroups}>
+            <Text style={styles.editProfileTextStyle}>You have {this.props.groups.length} active groups</Text>
+          </View>
+
+          <FlatList 
+            data= {this.props.groups}
+            renderItem={ ({item}) => {
+              return (
+                <TouchableOpacity key={item.name} style = {styles.individualGroupContainer}>
+                  <Text style = {styles.individualGroup}>{item.name}</Text>
+                </TouchableOpacity>
+              )
+            }}
+            keyExtractor={ group => group.id.toString()}
+          />
         </View>
 
         </View>
@@ -87,6 +116,16 @@ class ProfilePage extends Component{
         marginLeft: 30,
         marginTop: 5
     },
+    tabsTextStyle3: {
+      textAlign: "center",
+      fontSize: 18,
+      marginLeft: 30
+  },
+    extraButtonsText: {
+      textAlign: "center",
+      fontSize: 15,
+      marginTop: 5
+},
     userNameHeader:{
       marginTop: 55,
       display: "flex",
@@ -126,14 +165,43 @@ class ProfilePage extends Component{
       marginRight: 10
     },
     individualExtraButtons: {
-      width: 117, 
-        height: 117,
-        borderRadius: 60,
+        width: 85, 
+        height: 85,
         justifyContent: "center",
         alignItems: "center",
-        marginBottom: 2,
-        marginTop: 35,
-        marginLeft: 20
+        marginBottom: 2
+    },
+    extraButtons: {
+      justifyContent: "center",
+        alignItems: "center",
+        display: "flex",
+        flexDirection: "row",
+        justifyContent: "space-around",
+        alignContent: "center",
+        flexWrap: "wrap",
+        marginTop: 30
+    },
+    numberOfActiveGroups: {
+        marginTop: 3
+    },
+    borderLine: {
+      backgroundColor: "black",
+      height: 2,
+      marginTop: 30
+    },
+    individualGroup: {
+      textAlign: "center",
+      fontSize: 18,
+      marginTop: 15,
+      marginBottom: 5,
+    },
+    individualGroupContainer: {
+      marginTop: 10,
+      marginBottom: 7,
+      marginLeft: 20,
+      marginRight: 20,
+      borderStyle: "solid",
+      borderTopWidth: 1
     }
 });
 
@@ -141,7 +209,8 @@ class ProfilePage extends Component{
 const mapStateToProps = state => {
     return {
         contacts: state.contacts,
-        groups: state.groups
+        groups: state.groups,
+        archivedGroups: state.archivedGroups
         // login: state.login
     };
 };
