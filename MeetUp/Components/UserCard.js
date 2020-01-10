@@ -96,6 +96,3 @@ const styles = StyleSheet.create({
 });
 
 export default UserCard;
-
-
-//"https://www.pngfind.com/pngs/m/254-2546448_free-png-check-mark-png-png-image-with.png

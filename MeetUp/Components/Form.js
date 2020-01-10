@@ -73,6 +73,13 @@ class Form extends Component{
                 address: value.address,
             });
             //retrieve user paths and make a group post request here
+            let newGroup = {
+                name: value.name,
+                groupUsers: this.state.selectedUsers,
+                address: value.address
+            }
+            this.props.addGroups(newGroup);
+            this.props.navigation.navigate('Dashboard');
         }
     }
 
@@ -101,7 +108,7 @@ class Form extends Component{
                     })} */}
                     {this.props.contacts.map(contact => {
                         return (
-                            <UserCard contact={contact} addUserToGroup={this.addUserToGroup} removeUserFromGroup={this.removeUserFromGroup}/>
+                            <UserCard key={contact.id} contact={contact} addUserToGroup={this.addUserToGroup} removeUserFromGroup={this.removeUserFromGroup}/>
                         )
                     })}
                 </View>

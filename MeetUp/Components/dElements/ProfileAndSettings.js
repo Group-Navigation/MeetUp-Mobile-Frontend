@@ -6,9 +6,18 @@ const vh = Dimensions.get("window").height;
 const vw = Dimensions.get("window").width;
 
 export default class ProfileAndSettings extends Component{
+    constructor(props)
+    {
+      super(props);
+    }
+
     static navigationOptions = {
     };
   
+    onPress = () => {
+      this.props.navigation.navigate('ProfilePage');
+    }
+
     render(){ 
   
       const style = StyleSheet.create({
@@ -46,7 +55,7 @@ export default class ProfileAndSettings extends Component{
   
       return(
         <View style={style.container}>
-          <TouchableOpacity style={style.tap}>
+          <TouchableOpacity onPress = {this.onPress} style={style.tap}>
             <Image style={style.profile} source={require('../../Assets/Profile_Pic.png')}/>
             <Text style={style.miniText}> Profile </Text>
           </TouchableOpacity>

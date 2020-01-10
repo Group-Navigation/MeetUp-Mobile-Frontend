@@ -16,7 +16,6 @@ class Login extends Component{
                     onPress = {() => {
                         this.props.navigation.navigate('Main'); 
                     }}
-                
                 />
             </View>
         );

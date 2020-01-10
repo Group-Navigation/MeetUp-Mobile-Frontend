@@ -8,6 +8,7 @@ import ProfileAndSettings from './dElements/ProfileAndSettings';
 import FriendRequests from './dElements/FriendRequests';
 import GroupInvitations from './dElements/GroupInvitations';
 import Groups from './dElements/Groups';
+import CreateGroup from './dElements/CreateGroup';
 import Map from './Map';
 
 const vh = Dimensions.get("window").height;
@@ -21,10 +22,11 @@ class Drawer extends Component{
     return( 
       <ScrollView>
         <Greeting/>
-        <ProfileAndSettings/>
+        <ProfileAndSettings navigation={this.props.navigation}/>
         <FriendRequests/>
         <GroupInvitations/>
         <Groups/>
+        <CreateGroup navigation={this.props.navigation}/>
       </ScrollView>
     )
   }
