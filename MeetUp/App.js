@@ -11,6 +11,7 @@ import Main from './Components/Main';
 import Dashboard from './Components/Dashboard';
 import Form from './Components/Form';
 import ProfilePage from './Components/ProfilePage';
+import Map from './Components/Map';
 
 
 const AppNavigator = createStackNavigator(
@@ -19,10 +20,11 @@ const AppNavigator = createStackNavigator(
     Dashboard: Dashboard,    //dashboard contains the map as a component
     Main: Main,
     Form: Form,
-    ProfilePage: ProfilePage
+    ProfilePage: ProfilePage,
+    MapView: Map
   },
   {
-    initialRouteName: 'Dashboard',
+    initialRouteName: 'MapView',
     defaultNavigationOptions:{
       headerTransparent: true
     }
