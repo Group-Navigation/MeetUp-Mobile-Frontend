@@ -21,10 +21,10 @@ const AppNavigator = createStackNavigator(
     Main: Main,
     Form: Form,
     ProfilePage: ProfilePage,
-    Map: Map
+    MapView: Map
   },
   {
-    initialRouteName: 'Map',
+    initialRouteName: 'MapView',
     defaultNavigationOptions:{
       headerTransparent: true
     }
