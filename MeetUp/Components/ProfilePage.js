@@ -5,6 +5,9 @@ import {connect} from 'react-redux';
 class ProfilePage extends Component{
     constructor(props){
         super(props);
+        this.state = {
+          bottomSection: "GROUPS"
+        }
     }
   
     render() {
