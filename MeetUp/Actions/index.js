@@ -18,6 +18,20 @@ export const addUsers = users => {
       payload: group
     }
   }
+
+  export const addArchivedGroup = groups => {
+    return {
+      type: "ADD_ARCHIVED_GROUP",
+      payload: groups
+    };
+  };
+  
+  export const removeArchivedGroups = group => {
+    return{
+      type: "REMOVE_ARCHIVED_GROUP",
+      payload: group
+    }
+  }
   
   
   export const loginUser = user => {

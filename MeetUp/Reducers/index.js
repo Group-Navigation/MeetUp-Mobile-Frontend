@@ -16,11 +16,23 @@ let contacts = [
     {id: 10, userName: "contact10", name: "Contact 10", curLocation: {latitude: 10, longitude: 10}, image: "https://i0.wp.com/www.winhelponline.com/blog/wp-content/uploads/2017/12/user.png?fit=256%2C256&quality=100&ssl=1"}
   ];
 
+  let groups = [
+    // {name: "Beach Party", id: 1},
+    // {name: "Snow Day", id:2},
+    // {name: "Spring Fling", id:3},
+    // {name: "Good Food", id:4}
+  ];
+
+let archivedGroups = [];
+
 let invMembersGroupId = -1;
 
 let currentGroup = -1;
 
 let curGroupId = -1;
+
+let newGroupId = 0;
+
 
 const contactsReducer = (oldContacts = contacts, action) => {
     switch(action.payload){
@@ -37,9 +49,11 @@ const usersReducer = (oldUsers = [], action) => {
     }
 };
 
-const groupsReducer = (oldGroups = [], action) => {
+const groupsReducer = (oldGroups = groups, action) => {
     switch(action.type){
         case "ADD_GROUPS":
+          action.payload.id = newGroupId;
+          newGroupId++;
             return oldGroups.concat(action.payload);
         case "REMOVE_GROUP":
             let filteredGroups = oldGroups.filter(gp => gp.id !== action.payload.id);
@@ -47,6 +61,18 @@ const groupsReducer = (oldGroups = [], action) => {
         default:
             return oldGroups;
     }
+};
+
+const archivedGroupsReducer = (oldGroups = archivedGroups, action) => {
+  switch(action.type){
+      case "ADD_ARCHIVED_GROUP":
+          return oldGroups.concat(action.payload);
+      case "REMOVE_ARCHIVED_GROUP":
+          let filteredGroups = oldGroups.filter(gp => gp.id !== action.payload.id);
+          return filteredGroups;
+      default:
+          return oldGroups;
+  }
 };
 
 const currentGroupReducer = (oldCurrentGroup = currentGroup, action) => {
@@ -102,5 +128,6 @@ export default combineReducers({
     login: loginReducer,
     currentGroup: currentGroupReducer,
     invGroup : invMembersReducer,
-    invites : invitationReducer
+    invites : invitationReducer,
+    archivedGroups: archivedGroupsReducer
   });
