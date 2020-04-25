@@ -97,7 +97,7 @@ class Form extends Component{
     render(){
         return(
             !this.state.userSelectionComplete ?
-            <View>
+            <View style={styles.container}>
                 <Text>Select users here. Once done, click the "Next" button to complete creating the group</Text>
                 <Button 
                     title="Next"
@@ -145,6 +145,9 @@ const styles = StyleSheet.create({
         justifyContent: "space-around",
         alignContent: "center",
         flexWrap: "wrap"
+    },
+    container: {
+        marginTop: 50
     }
 });
 

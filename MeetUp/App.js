@@ -12,6 +12,7 @@ import Login from './Components/Login';
 import Dashboard from './Components/Dashboard';
 import Form from './Components/Form';
 import ProfilePage from './Components/ProfilePage';
+import UserSearch from './Components/UserSearch';
 
 import { InMemoryCache } from 'apollo-cache-inmemory';
 import ApolloClient from 'apollo-boost';
@@ -23,10 +24,10 @@ const AppNavigator = createStackNavigator(
     Dashboard: Dashboard,    //dashboard contains the map as a component
     Form: Form,
     ProfilePage: ProfilePage,
-    // MapView: Map
+    UserSearch: UserSearch
   },
   {
-    initialRouteName: 'Login',
+    initialRouteName: 'Dashboard',
     defaultNavigationOptions:{
       headerTransparent: true
     }

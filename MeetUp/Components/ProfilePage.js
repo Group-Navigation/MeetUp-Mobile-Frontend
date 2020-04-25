@@ -50,7 +50,7 @@ class ProfilePage extends Component{
         </View>
 
         <View style = {styles.extraButtons}>
-          <TouchableOpacity style = {styles.individualExtraButtons}>
+          <TouchableOpacity onPress = {() => {this.props.navigation.navigate('UserSearch')}} style = {styles.individualExtraButtons}>
             <Image
               source = {{uri: "http://cdn.onlinewebfonts.com/svg/img_517898.png"}}
               style = {styles.individualExtraButtons}
