@@ -61,6 +61,13 @@ export const addUsers = users => {
     }
   }
   
+  export const addContacts = contactsArr =>{
+    return {
+      type: "ADD_CONTACTS",
+      payload: contactsArr
+    }
+  }
+
   export const addInvitation = inviteArr =>{
     return{
       type: "ADD_INVITATION",
