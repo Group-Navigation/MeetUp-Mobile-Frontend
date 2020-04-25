@@ -35,8 +35,11 @@ let newGroupId = 0;
 
 
 const contactsReducer = (oldContacts = contacts, action) => {
-    switch(action.payload){
-        default: return oldContacts;
+    switch(action.type){
+        case "ADD_CONTACTS":
+          return  oldContacts.concat(action.payload);
+        default: 
+          return oldContacts;
     }
 }
 

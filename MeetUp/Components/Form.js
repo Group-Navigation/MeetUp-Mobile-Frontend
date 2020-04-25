@@ -3,7 +3,7 @@ import {View, Text, Button, StyleSheet} from 'react-native';
 import UserCard from "./UserCard"
 import t from 'tcomb-form-native';
 import {connect} from 'react-redux';
-import {addGroups, addCurrentGroup} from '../Actions';
+import {addGroups, addCurrentGroup} from '../Actions/redux';
 
 const GroupForm = t.form.Form;
 
@@ -78,6 +78,10 @@ class Form extends Component{
                 groupUsers: this.state.selectedUsers,
                 address: value.address
             }
+            //Make request to backend
+            //create group and add users
+            
+
             this.props.addGroups(newGroup);
             this.props.navigation.navigate('Dashboard');
         }
