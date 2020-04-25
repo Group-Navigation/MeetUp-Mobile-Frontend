@@ -27,7 +27,7 @@ const AppNavigator = createStackNavigator(
     UserSearch: UserSearch
   },
   {
-    initialRouteName: 'Dashboard',
+    initialRouteName: 'Login',
     defaultNavigationOptions:{
       headerTransparent: true
     }
