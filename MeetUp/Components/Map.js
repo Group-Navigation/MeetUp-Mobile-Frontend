@@ -60,10 +60,6 @@ export default class Map extends Component{
         ref={ref => (this.mapView = ref)}
         initialRegion={this.state.initialUserRegion}
         >
-          {!!this.state.userLatitude && !!this.state.userLongitude && <MapView.Marker
-         coordinate={{"latitude":this.state.userLatitude,"longitude":this.state.userLongitude}}
-         title={"Your Location"}
-       />}
        </MapView>
       );
     }

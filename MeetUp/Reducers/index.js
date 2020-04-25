@@ -17,10 +17,10 @@ let contacts = [
   ];
 
   let groups = [
-    // {name: "Beach Party", id: 1},
-    // {name: "Snow Day", id:2},
-    // {name: "Spring Fling", id:3},
-    // {name: "Good Food", id:4}
+    {name: "Beach Party", id: 1},
+    {name: "Snow Day", id:2},
+    {name: "Spring Fling", id:3},
+    {name: "Good Food", id:4}
   ];
 
 let archivedGroups = [];
