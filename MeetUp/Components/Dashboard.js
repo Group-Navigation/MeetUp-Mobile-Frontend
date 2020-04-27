@@ -9,7 +9,7 @@ import FriendRequests from './dElements/FriendRequests';
 import GroupInvitations from './dElements/GroupInvitations';
 import Groups from './dElements/Groups';
 import CreateGroup from './dElements/CreateGroup';
-//import Map from './Map';
+import Map from './Map';
 import Test from './test';
 
 const vh = Dimensions.get("window").height;
@@ -34,7 +34,7 @@ class Drawer extends Component{
 }
 
 const SideMenu =  createDrawerNavigator({ //first object is the route configs
-    Test
+    Map
   },{ //second object is the drawer navigator configs
     drawerBackgroundColor: 'whitesmoke',
     drawerType: 'slide',

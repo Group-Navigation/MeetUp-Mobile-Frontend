@@ -1,6 +1,9 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet} from 'react-native';
 import MapView, {Polyline} from 'react-native-maps';
+import {withApollo} from 'react-apollo';
+import { connect } from "react-redux";
+import {GET_PATHS} from '../Actions/graphql.js'
 
 const colors = [
   '#73F1CE',
@@ -19,7 +22,7 @@ let selectedColors = [];
 
 let curEndOfColorArray = colors.length;
 
-export default class Map extends Component{
+class Map extends Component{
   constructor(props){
     super(props);
 
@@ -41,7 +44,9 @@ export default class Map extends Component{
     }; 
 
   componentDidMount() {
+    this.getUserPaths();
     this.updateUserCoords();
+    console.log(this.props.currentGroup)
    }
 
 
@@ -63,6 +68,12 @@ export default class Map extends Component{
       { enableHighAccuracy: true, timeout: 200000, maximumAge: 1000 },
     );
   }
+
+  getUserPaths = () => {
+    this.props.client.query({query: GET_PATHS})
+      .then(result=>{console.log(result)})
+      .catch(err=>console.log(err));  
+  };
 
   //selects random colors for the user paths from the 'colors' array.
   //the same color cannot be chosen twice, unless the size of the group exceeds the length of the array.
@@ -95,7 +106,7 @@ export default class Map extends Component{
             { latitude: 40.611202, longitude: -73.978327 },
             { latitude: 40.610838, longitude: -73.978248 },
             { latitude: 40.611001, longitude: -73.976722 },
-            { latitude: 40.609486, longitude:-73.974183 },
+            { latitude: 40.609486, longitude: -73.974183 },
             { latitude: 40.608706, longitude: -73.974019 },
             { latitude: 40.609782, longitude: -73.964326 },
             { latitude: 40.606756, longitude: -73.963746 },
@@ -108,4 +119,14 @@ export default class Map extends Component{
       );
     }
   }
+
+  const mapStateToProps = (state) => {
+    return {
+      currentGroup: state.currentGroup
+    };
+  };
+
+  export default withApollo(connect(mapStateToProps, {
+
+  })(Map));
 

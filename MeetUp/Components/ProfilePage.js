@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {Text, View, StyleSheet, Image, ImageBackground, TouchableOpacity, FlatList} from 'react-native';
 import {connect} from 'react-redux';
+import {changeGroup} from '../Actions/redux';
 
 class ProfilePage extends Component{
     constructor(props){
@@ -8,6 +9,11 @@ class ProfilePage extends Component{
         this.state = {
           bottomSection: "GROUPS"
         }
+    }
+
+    selectGroup = (groupId) => {
+      this.props.changeGroup(groupId);
+      this.props.navigation.navigate('Dashboard')
     }
   
     render() {
@@ -78,7 +84,7 @@ class ProfilePage extends Component{
             data= {this.props.groups}
             renderItem={ ({item}) => {
               return (
-                <TouchableOpacity key={item.name} style = {styles.individualGroupContainer}>
+                <TouchableOpacity key={item.name} onPress={() => this.selectGroup(item.id)} style = {styles.individualGroupContainer}>
                   <Text style = {styles.individualGroup}>{item.name}</Text>
                 </TouchableOpacity>
               )
@@ -213,12 +219,15 @@ const mapStateToProps = state => {
     return {
         contacts: state.contacts,
         groups: state.groups,
-        archivedGroups: state.archivedGroups
+        archivedGroups: state.archivedGroups,
+        currentGroup: state.currentGroup
         // login: state.login
     };
 };
 
 export default connect(
     mapStateToProps,
-    {}
+    {
+      changeGroup
+    }
 )(ProfilePage);

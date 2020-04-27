@@ -25,3 +25,21 @@ export const TEST = gql`
     }
 `;
 
+export const GET_PATHS = gql`
+    query paths{
+        pathsOfGroup(id: 1){
+            path
+            eta
+            user{
+                id
+                displayName
+            }
+        }
+    }
+`;
+
+export const CREATE_GROUP = gql`
+    mutation newGroup($name: String!, $address: String!, $users: [ID]!){
+        createGroup(name: $name, address: $address, users: $users)
+    }
+`;

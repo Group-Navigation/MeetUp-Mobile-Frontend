@@ -29,8 +29,6 @@ let invMembersGroupId = -1;
 
 let currentGroup = -1;
 
-let curGroupId = -1;
-
 let newGroupId = 0;
 
 
