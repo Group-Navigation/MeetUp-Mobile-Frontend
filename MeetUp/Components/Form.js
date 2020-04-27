@@ -4,6 +4,8 @@ import UserCard from "./UserCard"
 import t from 'tcomb-form-native';
 import {connect} from 'react-redux';
 import {addGroups, addCurrentGroup} from '../Actions/redux';
+import {CREATE_GROUP} from '../Actions/graphql.js'
+import {withApollo} from 'react-apollo';
 
 const GroupForm = t.form.Form;
 
@@ -75,13 +77,26 @@ class Form extends Component{
             //retrieve user paths and make a group post request here
             let newGroup = {
                 name: value.name,
-                groupUsers: this.state.selectedUsers,
                 address: value.address
             }
+
+            let ids = [];
+            for(let i = 0; i < this.state.selectedUsers.length; i++)
+            {
+                ids.push(this.state.selectedUsers[i].id);
+            }
+
+            newGroup.users = ids;
             //Make request to backend
             //create group and add users
-            
+            //Pass parameters in the variables object
+            //arguments are: name, address, and array of users
+            //will return a data object containing a boolean, whether group was sucessfuly created or not
 
+            this.props.client.mutation({mutation: CREATE_GROUP, variables: newGroup})
+            .then(res => console.log(res.data)).catch(err => console.log(err));
+            
+            newGroup.users = this.state.selectedUsers;
             this.props.addGroups(newGroup);
             this.props.navigation.navigate('Dashboard');
         }
@@ -158,10 +173,7 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(
-    mapStateToProps,
-    {
-        addGroups,
-        addCurrentGroup
-    }
-)(Form);
+export default withApollo(connect(mapStateToProps, {
+    addGroups,
+    addCurrentGroup
+})(Form));
